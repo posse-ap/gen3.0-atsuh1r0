@@ -144,6 +144,10 @@ h2 {
   padding: 24px;
 }
 
+.quiz-answer-list-select:hover {
+  cursor: pointer;
+}
+
 .quiz-answer-list-select-text {
   position: relative;
   font-family: 'Noto Sans JP';
@@ -205,10 +209,6 @@ h2 {
   height: 381px;
   margin: 0 auto;
 }
-
-
-
-
 
 /* LINE */
 .line-box {
