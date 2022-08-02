@@ -362,7 +362,7 @@ h2 {
 }
 
 /* 正解・不正解表示 */
-.correctBox {
+.correct-box {
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
@@ -374,7 +374,7 @@ h2 {
   background-color: #FFF2F5;
 }
 
-.incorrectBox {
+.incorrect-box {
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
@@ -386,14 +386,14 @@ h2 {
   background-color:  #EFF2F5;
 }
 
-.correctBoxText {
+.correct-box-text {
   display: flex;
   justify-content: left;
   align-items: center;
   gap: 16px;
 }
 
-.correctBoxA {
+.correct-box-A {
   color: #333333;
   font-family: 'Plus Jakarta Sans';
   font-style: normal;
@@ -402,12 +402,17 @@ h2 {
   line-height: 180%;
 }
 
-.correctBoxP {
+.correct-box-P {
   color: #333333;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 180%;
+}
+
+.emphasis-choice {
+  border: 5px solid #0071BC;
+  border-radius: 8px;
 }
 
