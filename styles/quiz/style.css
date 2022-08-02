@@ -360,3 +360,54 @@ h2 {
   top: 110px;
   left: 20%;
 }
+
+/* 正解・不正解表示 */
+.correctBox {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  color: #E34E70;
+  padding: 24px 40px;
+  background-color: #FFF2F5;
+}
+
+.incorrectBox {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  color: #0071BC;;
+  padding: 24px 40px;
+  background-color:  #EFF2F5;
+}
+
+.correctBoxText {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 16px;
+}
+
+.correctBoxA {
+  color: #333333;
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 180%;
+}
+
+.correctBoxP {
+  color: #333333;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 180%;
+}
+
