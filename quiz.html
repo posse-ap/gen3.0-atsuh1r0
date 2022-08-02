@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <img src="./img/logo.svg" alt="posse-icon">
+      <img src="./img/logo.svg" alt="posse-icon" class="posse-icon">
       <div class="nav-ber">
         <div class="nav-item">POSSEとは</div>
         <h1 class="nav-item">クイズ</h1>
@@ -44,14 +44,14 @@
           <div class="quiz-answer">
             <h2 class="quiz-answer-icon">A</h2>
             <ul class="quiz-answer-list">
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">約28万人</p>
+              <li class="quiz-answer-list-select" id="q1-incorrect-answer">
+                約28万人
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">約28万人</p>
+              <li class="quiz-answer-list-select" id="q1-correct-answer">
+                約79万人
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">約28万人</p>
+              <li class="quiz-answer-list-select" id="q1-incorrect-answer">
+                約183万人
               </li>
             </ul>
             <div class="reference">
@@ -69,14 +69,14 @@
           <div class="quiz-answer">
             <h2 class="quiz-answer-icon">A</h2>
             <ul class="quiz-answer-list">
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">INTECH</p>
+              <li class="quiz-answer-list-select" id="q2-incorrect-answer">
+                INTECH
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">BIZZTECH</p>
+              <li class="quiz-answer-list-select" id="q2-incorrect-answer">
+                BIZZTECH
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">X-TECH</p>
+              <li class="quiz-answer-list-select" id="q2-correct-answer">
+                X-TECH
               </li>
             </ul>
           </div>
@@ -90,14 +90,14 @@
           <div class="quiz-answer">
             <h2 class="quiz-answer-icon">A</h2>
             <ul class="quiz-answer-list">
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">Internet of Things</p>
+              <li class="quiz-answer-list-select" id="q3-correct-answer">
+                Internet of Things
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">Integrate Technology</p>
+              <li class="quiz-answer-list-select" id="q3-incorrect-answer">
+                Integrate Technology
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">Infomation on Tool</p>
+              <li class="quiz-answer-list-select" id="q3-incorrect-answer">
+                Infomation on Tool
               </li>
             </ul>
           </div>
@@ -111,14 +111,14 @@
           <div class="quiz-answer">
             <h2 class="quiz-answer-icon">A</h2>
             <ul class="quiz-answer-list">
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">Society 5.0</p>
+              <li class="quiz-answer-list-select" id="q4-correct-answer">
+                Society 5.0
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">CyPhy</p>
+              <li class="quiz-answer-list-select" id="q4-incorrect-answer">
+                CyPhy
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">SDGs</p>
+              <li class="quiz-answer-list-select" id="q4-incorrect-answer">
+                SDGs
               </li>
             </ul>
             <div class="reference">
@@ -136,14 +136,14 @@
           <div class="quiz-answer">
             <h2 class="quiz-answer-icon">A</h2>
             <ul class="quiz-answer-list">
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">Web3.0</p>
+              <li class="quiz-answer-list-select" id="q5-correct-answer">
+                Web3.0
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">NFT</p>
+              <li class="quiz-answer-list-select" id="q5-incorrect-answer">
+                NFT
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">メタバース</p>
+              <li class="quiz-answer-list-select" id="q5-incorrect-answer">
+                メタバース
               </li>
             </ul>
           </div>
@@ -157,14 +157,14 @@
           <div class="quiz-answer">
             <h2 class="quiz-answer-icon">A</h2>
             <ul class="quiz-answer-list">
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">約2倍</p>
+              <li class="quiz-answer-list-select" id="q6-incorrect-answer">
+                約2倍
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">約5倍</p>
+              <li class="quiz-answer-list-select" id="q6-correct-answer">
+                約5倍
               </li>
-              <li class="quiz-answer-list-select">
-                <p class="quiz-answer-list-select-text">約11倍</p>
+              <li class="quiz-answer-list-select" id="q6-incorrect-answer">
+                約11倍
               </li>
             </ul>
             <div class="reference">
@@ -218,5 +218,6 @@
       </div>
       <div class="copy-right content-center">&copy; 2022 POSSE</div>
     </footer>
+    <script src="./js/quiz.js"></script>
   </body>
 </html>

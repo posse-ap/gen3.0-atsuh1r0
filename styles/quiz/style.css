@@ -137,29 +137,26 @@ h2 {
 }
 
 .quiz-answer-list-select {
+  position: relative;
   width: 312px;
   background-color: #FFFFFF;
   border: 5px solid #EEEEEE;
   border-radius: 8px;
   padding: 24px;
-}
-
-.quiz-answer-list-select:hover {
-  cursor: pointer;
-}
-
-.quiz-answer-list-select-text {
-  position: relative;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
 }
 
-.quiz-answer-list-select-text::after {
+.quiz-answer-list-select:hover {
+  cursor: pointer;
+}
+
+.quiz-answer-list-select::after {
   content: "";
   position: absolute;
-  top: 5px;
+  margin: 4px 20px 0 0;
   right: 0px;
   border-bottom: 10px solid transparent;
   border-top: 10px solid transparent;
@@ -283,6 +280,7 @@ h2 {
   justify-content: center;
   align-items: center;
   justify-content: space-around;
+  margin-top: 16px;
 }
 
 .line-box-button-text {
