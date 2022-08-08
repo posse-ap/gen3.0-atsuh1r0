@@ -1,10 +1,37 @@
 'use strict';
 
-function createQuestion(questionNumber, choiceArray, question, answerNumber, reference) {
+const quizList = [
+  {"questionNumber" : 1, "choiceArray" : ["約28万人", "約79万人", "約183万人"], "question" : "日本のIT人材が2030年には最大どれくらい不足すると言われているでしょうか？", "answerNumber" : 1, "reference" : "経済産業省 2019年3月 - IT人材需給に関する調査"},
+  {"questionNumber" : 2, "choiceArray" : ["INTECH", "BIZZTECH", "X-TECH"], "question" : "既存業界のビジネスと、先進的なテクノロジーを結びつけて生まれた、新しいビジネスのことをなんと言うでしょう？", "answerNumber" : 2, "reference" : null},
+  {"questionNumber" : 3, "choiceArray" : ["Internet of Things", "Integrate Technology", "Infomation on Tool"], "question" : "IoTとは何の略でしょう？", "answerNumber" : 0, "reference" : null},
+  {"questionNumber" : 4, "choiceArray" : ["Society5.0", "CyPhy", "SDGs"], "question" : "日本が目指すサイバー空間とフィジカル空間を硬度に融合させたシステムによって開かれる未来社会のことをなんと言うでしょうか？", "answerNumber" : 0, "reference" : "Society5.0 - 科学技術政策 - 内閣府"},
+  {"questionNumber" : 5, "choiceArray" : ["Web3.0", "NFT", "メタバース"], "question" : "イギリスのコンピューター科学者であるギャビン・ウッド氏が提唱した、ブロックチェーン技術を活用した「次世代分散型インターネット」のことをなんと言うでしょう？", "answerNumber" : 0, "reference" : null},
+  {"questionNumber" : 6, "choiceArray" : ["約2倍", "約5倍", "約11倍"], "question" : "先進テクノロジー活用企業と出遅れた企業の収益性の差はどれくらいあると言われているでしょうか？", "answerNumber" : 1, "reference" : "Accenture Technology Vision 2021"},
+];
+
+const answers = [
+  '約79万人',
+  'X-TECH',
+  'internet of Things',
+  'Society 5.0',
+  'Web3.0',
+  '約5倍',
+];
+
+function arrayShuffle(quizList) {
+  for (var i = quizList.length - 1; i > 0; i--) {
+    var r = Math.floor(Math.random() * (i + 1));
+    var tmp = quizList[i];
+    quizList[i] = quizList[r];
+    quizList[r] = tmp;
+  }
+}
+
+function createQuestion(displayNum, questionNumber, choiceArray, question, answerNumber, reference) {
   let quiz = 
   `<div class="quiz-box">`
   + `<div class="quiz-question-box">`
-  + `<h2 class="quiz-icon">Q${questionNumber}</h2>` 
+  + `<h2 class="quiz-icon">Q${displayNum}</h2>` 
   + `<h3 class="quiz-question">${question}</h3>`
   + `</div>`
   + `<img src=./img/quiz/img-quiz0${questionNumber}.png class="q${questionNumber}_img">`
@@ -37,22 +64,12 @@ function createQuestion(questionNumber, choiceArray, question, answerNumber, ref
 }
 
 function createHtml() {
-  createQuestion(1, ["約28万人", "約79万人", "約183万人"], "日本のIT人材が2030年には最大どれくらい不足すると言われているでしょうか？", 1, "経済産業省 2019年3月 - IT人材需給に関する調査")
-  createQuestion(2, ["INTECH", "BIZZTECH", "X-TECH"], "既存業界のビジネスと、先進的なテクノロジーを結びつけて生まれた、新しいビジネスのことをなんと言うでしょう？", 2, null)
-  createQuestion(3, ["Internet of Things", "Integrate Technology", "Infomation on Tool"], "IoTとは何の略でしょう？", 0, null)
-  createQuestion(4, ["Society5.0", "CyPhy", "SDGs"], "日本が目指すサイバー空間とフィジカル空間を硬度に融合させたシステムによって開かれる未来社会のことをなんと言うでしょうか？", 0, "Society5.0 - 科学技術政策 - 内閣府")
-  createQuestion(5, ["Web3.0", "NFT", "メタバース"], "イギリスのコンピューター科学者であるギャビン・ウッド氏が提唱した、ブロックチェーン技術を活用した「次世代分散型インターネット」のことをなんと言うでしょう？", 0, null)
-  createQuestion(6, ["約2倍", "約5倍", "約11倍"], "先進テクノロジー活用企業と出遅れた企業の収益性の差はどれくらいあると言われているでしょうか？", 1, "Accenture Technology Vision 2021")
-}
+  arrayShuffle(quizList);
 
-const answers = [
-  '約79万人',
-  'X-TECH',
-  'internet of Things',
-  'Society 5.0',
-  'Web3.0',
-  '約5倍',
-];
+  for (let num = 0; num < 6; num++) {
+    createQuestion(num+1, quizList[num].questionNumber, quizList[num].choiceArray, quizList[num].question, quizList[num].answerNumber, quizList[num].reference);
+  }
+}
 
 {
   createHtml();
