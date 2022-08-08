@@ -79,4 +79,3 @@ const answers = [
     });
   }
 }
-
