@@ -69,20 +69,20 @@ footer {
 /* メインビジュアル要素 */
 .main-visual {
   position: relative;
-  width: 100%;
+  max-width: 1440px;
   height: 680px;
+  margin: 0 auto;
 }
 
 .main-visual-box {
   background-color: #EFF2F5;
-  width: 500px;
-  height: 281px;
   border-radius: 24px;
   position: absolute;
   left: 80px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
+  padding: 40px 62px;
 }
 
 .main-visual-name {
@@ -93,7 +93,6 @@ footer {
   font-weight: 700;
   line-height: 180%;
   text-align: center;
-  margin-top: 40px;
 }
 
 .main-visual-msg {
@@ -104,7 +103,6 @@ footer {
   font-weight: 700;
   line-height: 80px;
   letter-spacing: 0.05em;
-  text-align: center;
   margin-top: 12px;
 }
 
