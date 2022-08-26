@@ -9,7 +9,7 @@ header {
   justify-content: space-between;
   position: fixed;
   background-color: #FFFFFF;
-  z-index: 2;
+  z-index: 3;
 }
 
 main {
@@ -77,6 +77,7 @@ footer {
 }
 
 .quiz-box {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 64px;
@@ -130,6 +131,7 @@ h2 {
 }
 
 .quiz-answer-list {
+  width: 100%;
   display: flex;
   gap: 24px;
   align-items: center;
@@ -138,7 +140,7 @@ h2 {
 
 .quiz-answer-list-select {
   position: relative;
-  width: 312px;
+  width: 100%;
   background-color: #FFFFFF;
   border: 5px solid #EEEEEE;
   border-radius: 8px;
@@ -221,7 +223,7 @@ h2 {
   background-color: rgba(0,113,188,0.9);
   border-radius: 48px;
   z-index: 1;
-  Width: 984px;
+  Width: 70%;
   height: 100%;
 }
 
@@ -231,7 +233,7 @@ h2 {
   background-repeat: no-repeat;
   mix-blend-mode: normal;
   border-radius: 48px;
-  Width: 984px;
+  Width: 70%;
   height: 100%;
   margin:  0 auto;
 }
@@ -335,6 +337,7 @@ h2 {
   height: 320px;
   background-image: url(/img/quiz/bg-hero.jpg);
   position: relative;
+  background-size: cover;
 }
 
 .hero-title {
