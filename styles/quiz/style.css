@@ -180,33 +180,33 @@ h2 {
 /* Q1 */
 .q1_img {
   width: 718px;
-  height: 357px;
   margin: 0 auto;
+  object-fit: contain;
 }
 .q2_img {
   width: 718px;
-  height: 358px;
   margin: 0 auto;
+  object-fit: contain;
 }
 .q3_img {
   width: 718px;
-  height: 357px;
   margin: 0 auto;
+  object-fit: contain;
 }
 .q4_img {
   width: 718px;
-  height: 358.59px;
   margin: 0 auto;
+  object-fit: contain;
 }
 .q5_img {
   width: 718px;
-  height: 324px;
   margin: 0 auto;
+  object-fit: contain;
 }
 .q6_img {
   width: 718px;
-  height: 381px;
   margin: 0 auto;
+  object-fit: contain;
 }
 
 /* LINE */
@@ -310,6 +310,7 @@ h2 {
 
 .official-website {
   color: #666666;
+  text-decoration: none;
 }
 
 .official-website-link {
@@ -418,4 +419,3 @@ h2 {
   border: 5px solid #0071BC;
   border-radius: 8px;
 }
-
