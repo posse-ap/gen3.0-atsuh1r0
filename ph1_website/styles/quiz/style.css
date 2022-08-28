@@ -236,6 +236,7 @@ h2 {
   Width: 70%;
   height: 100%;
   margin:  0 auto;
+  object-fit: cover;
 }
 
 .line-box-title {
