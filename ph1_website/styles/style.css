@@ -9,7 +9,7 @@ header {
   position: fixed;
   background-color: #FFFFFF;
   justify-content: space-between;
-  z-index: 2;
+  z-index: 3;
 }
 
 main {
@@ -74,11 +74,12 @@ footer {
 .main-visual {
   position: relative;
   max-width: 1440px;
-  height: 680px;
   margin: 0 auto;
+  display: flex;
 }
 
 .main-visual-box {
+  max-width: 27%;
   background-color: #EFF2F5;
   border-radius: 24px;
   position: absolute;
@@ -111,8 +112,7 @@ footer {
 }
 
 .hero-img {
-  width: 976px;
-  height: 680px;
+  width: 63%;
   border-radius: 80px 0px 0px 80px;
   margin-right: 0;
   float: right;
@@ -122,8 +122,9 @@ footer {
   position: absolute;
   width: 102px;
   height: 21px;
-  left: 112px;
-  top: 635px;
+  left: 10%;
+  top: 90%;
+  z-index: 2;
 }
 
 .scroll-down::before {
@@ -142,28 +143,29 @@ footer {
 .banner {
   position: fixed;
   width: 288px;
-  height: 80px;
   right: 16px;
   bottom: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 13px;
   background: #5FDF5B;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
   z-index: 2;
+  padding: 20px 20px;
+  text-decoration: none;
 }
 
 .line-banner-icon {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 35px;
   background-color: #FFFFFF;
   object-fit: cover;
   border-radius: 7px;
 }
 
 .banner-msg {
-  height: 36px;
   font-family: 'Noto Sans JP';
   font-style: normal;
   font-weight: 700;
@@ -171,7 +173,6 @@ footer {
   line-height: 130%;
   letter-spacing: 0.14em;
   color: #FFFFFF;
-  margin: 0 35px 0 13px;
 }
 
 /* メイン要素 */
@@ -197,21 +198,23 @@ footer {
 }
 
 .about-posse-content {
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  margin: 43px 0 140px 0;
+  margin: 43px auto 140px auto;
 }
 
 .about-posse-img {
-  width: 472px;
+  width: 50%;
   height: 312px;
   border-radius: 24px;
+  object-fit: cover;
 }
 
 .about-posse-text {
-  width: 472px;
+  width: 50%;
   font-size: 14px;
   color: #333333;
   font-family: 'Noto Sans JP';
@@ -229,12 +232,12 @@ footer {
   margin-bottom: 80px;
 }
 
-.line-bule {
+.line-blue {
   position: absolute;
   background-color: rgba(0,113,188,0.9);
   border-radius: 48px;
   z-index: 1;
-  Width: 984px;
+  Width: 70%;
   height: 100%;
 }
 
@@ -244,7 +247,7 @@ footer {
   background-repeat: no-repeat;
   mix-blend-mode: normal;
   border-radius: 48px;
-  Width: 984px;
+  Width: 70%;
   height: 100%;
   margin:  0 auto;
 }
@@ -320,6 +323,7 @@ footer {
 }
 
 .official-website {
+  text-decoration: none;
   color: #666666;
 }
 
