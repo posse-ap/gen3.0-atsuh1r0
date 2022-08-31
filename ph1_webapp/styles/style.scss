@@ -1,0 +1,133 @@
+/* ヘッダー */
+.header {
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 3%;
+  align-items: center;
+
+  &-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &-week-cnt {
+    color: #97b9d1;
+  }
+
+  .post {
+    border: none;
+    color: #FFFFFF;
+    background: linear-gradient(to right, #0f71bc, #3ccfff);
+    cursor: pointer;
+    border-radius: 1rem;
+    width: 15%;
+    height: 2rem;
+
+    &:hover {
+      box-shadow: 0 4px 0.4rem 0 rgba(0, 0, 0, 0.5);
+      transform: translateY(-0.4rem);
+    }
+  }
+}
+
+.main {
+  padding: 20px 0;
+  background-color: lightgray;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 45%;
+  }
+
+  .right {
+    display: flex;
+    justify-content: center;
+    width: 45%;
+    gap: 20px;
+  }
+
+  .study-hours {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+
+    .today-wrapper,
+    .month-wrapper,
+    .total-wrapper {
+      width: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #FFFFFF;
+      border-radius: 1rem;
+      padding: 1rem 0;
+      font-weight: bold;
+    }
+
+    &-title {
+      color: #0f71bc;
+      font-size: larger;
+    }
+
+    &-hour {
+      font-size: xxx-large;
+    }
+
+    &-unit {
+      color: #3ccfff;
+      font-size: larger;
+    }
+  }
+
+  .languages, 
+  .contents {
+    &-wrapper {
+      width: -webkit-fill-available;
+      background-color: #FFFFFF;
+      border-radius: 1rem;
+      padding: 2rem 0;
+    }
+
+    &-title {
+      font-size: x-large;
+      font-weight: bold;
+      padding-left: 20px;
+    }
+
+    &-chart {
+      width: 80%;
+      margin:  0 auto;
+    }
+
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.footer {
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+
+  .before,
+  .after {
+    color: #3ccfff;
+  }
+
+  .before:hover,
+  .after:hover {
+    color: #0f71bc;
+    cursor: pointer; 
+  }
+}
