@@ -51,7 +51,7 @@ function createQuestion(displayNum, questionNumber, choiceArray, question, answe
 
   if (reference !== null) {
     quiz += `<div class="reference">`
-    + `<img src="/img/icon/icon-note.svg" alt="icon-note">`
+    + `<img src="./img/icon/icon-note.svg" alt="icon-note">`
     + `<p class="reference-text">${reference}</p>`
     + `</div>`;
   }
