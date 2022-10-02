@@ -1,0 +1,420 @@
+.header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  background-color: #FFFFFF;
+  z-index: 3;
+}
+
+.posse-icon {
+  margin-left: 24px;
+}
+
+.nav-ber {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-right: 24px;
+}
+
+.nav-item {
+  color: #666666;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.circle-border {
+  position: relative;
+  border: 1px solid #EEEEEE;
+  border-radius: 50%;
+  width: 48px;
+  height: 50px;
+}
+
+.nav-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.header-sns-icon {
+  display: flex;
+  gap: 16px;
+}
+
+.content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  width: 100%;
+  padding-top: 80px;
+}
+
+/* クイズページ */
+h2 {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 150%;
+}
+
+.quiz {
+  margin: 128px 15% 110px 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  gap: 120px;
+
+  &-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  &-question {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 150%;
+    color: #333333;
+
+    &-box {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  &-icon {
+    width: 53px;
+    height: 54px;
+    color: #FFFFFF;
+    background-color: #0071bc;
+    border-radius: 8px;
+    padding: 8px 16px;
+  }
+
+  &-answer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &-icon {
+      width: 26px;
+      height: 54px;
+      background-color: #E34E70;
+      border-radius: 8px;
+      color: #FFFFFF;
+      padding: 8px 16px;
+    }
+
+    &-list {
+      width: 100%;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin: 0 auto;
+
+      &-select {
+        position: relative;
+        width: 100%;
+        background-color: #FFFFFF;
+        border: 5px solid #EEEEEE;
+        border-radius: 8px;
+        padding: 24px;
+        font-family: 'Noto Sans JP';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          margin: 4px 20px 0 0;
+          right: 0px;
+          border-bottom: 10px solid transparent;
+          border-top: 10px solid transparent;
+          border-left: 10px solid #333333;
+        }
+      }
+    }
+  }
+}
+
+.reference {
+  border-radius: 8px;
+  background-color: #F6F6f6;
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 24px 0 24px 24px;
+  display: flex;
+  gap: 15px;
+}
+
+/* Q1 */
+.q1_img {
+  width: 718px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.q2_img {
+  width: 718px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.q3_img {
+  width: 718px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.q4_img {
+  width: 718px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.q5_img {
+  width: 718px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+.q6_img {
+  width: 718px;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* LINE */
+.line {
+  &-blue {
+    position: absolute;
+    background-color: rgba(0,113,188,0.9);
+    border-radius: 48px;
+    z-index: 1;
+    Width: 70%;
+    height: 100%;
+  }
+
+  &-back-img {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    mix-blend-mode: normal;
+    border-radius: 48px;
+    Width: 70%;
+    height: 100%;
+    margin:  0 auto;
+    object-fit: cover;
+  }
+
+  &-box {
+    position: relative;
+    height: 360px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+
+    &-title {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      align-items: center;
+      margin: 68px 0 16px 0;
+  
+      &-text {
+        font-family: 'Noto Sans JP';
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 180%;
+      }
+
+      &-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #FFFFFF;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+    }
+    
+    &-text {
+      font-family: 'Noto Sans JP';
+      color: #FFFFFF;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 160%;
+      text-align: center;
+    }
+
+    &-button {
+      width: 320px;
+      height: 50px;
+      background: #FFFFFF;
+      border-radius: 98px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 16px;
+
+      &-text {
+        font-family: 'Noto Sans JP';
+        font-weight: 700;
+        color: #666666;
+        letter-spacing: 0.1em;
+      }
+
+      &-icon {
+        width: 12.25px;
+        height: 12.25px;
+      }
+    }
+  }
+}
+
+/* フッター要素 */
+.footer {
+  width: 100%;
+  height: 355px;
+
+  &-posse-icon-img {
+    padding: 56px 0 24px 0;
+    border-top: 1px solid #EEEEEE;
+
+    &-size {
+      width: 202px;
+      height: 39.22px;
+    }
+  }
+
+  &-sns-icon {
+    display: flex;
+    gap: 8px;
+    padding: 32px 0 48px 0;
+    border-bottom: 1px solid #EEEEEE;
+  }
+}
+
+.official-website {
+  color: #666666;
+  text-decoration: none;
+
+  &-link {
+    width: 12.25px;
+    height: 12.25px;
+    margin: 6.125px 0 0 6.29px;
+  }
+}
+
+.copy-right {
+  font-size: 10px;
+  padding: 36px 0 31.78px 0;
+}
+
+/* クイズページ */
+/* ヒーロー */
+.hero {
+  width: 100%;
+  height: 320px;
+  background-image: url(/img/quiz/bg-hero.jpg);
+  position: relative;
+  background-size: cover;
+
+  &-title {
+    color: #FFFFFF;
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 150%;
+    position: absolute;
+    top: 154px;
+    left: 20%;
+  }
+
+  &-subtitle {
+    color: #FFFFFF;
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 180%;
+    position: absolute;
+    top: 110px;
+    left: 20%;
+  }
+}
+
+/* 正解・不正解表示 */
+.correct-box {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  color: #E34E70;
+  padding: 24px 40px;
+  background-color: #FFF2F5;
+
+  &-text {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &-A {
+    color: #333333;
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 180%;
+  }
+
+  &-P {
+    color: #333333;
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 180%;
+  }
+}
+
+.incorrect-box {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 0.05em;
+  color: #0071BC;;
+  padding: 24px 40px;
+  background-color:  #EFF2F5;
+}
+
+.emphasis-choice {
+  border: 5px solid #0071BC;
+  border-radius: 8px;
+}
