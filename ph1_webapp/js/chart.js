@@ -145,20 +145,20 @@
   const myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: [contents[0].name, contents[1].name, contents[2].name],
-        datasets: [{
-            data: [contents[0].hour, contents[1].hour, contents[2].hour],
-            backgroundColor: [
-              contents[0].color,
-              contents[1].color,
-              contents[2].color,
-            ],
-        }]
+      labels: [contents[0].name, contents[1].name, contents[2].name],
+      datasets: [{
+        data: [contents[0].hour, contents[1].hour, contents[2].hour],
+        backgroundColor: [
+          contents[0].color,
+          contents[1].color,
+          contents[2].color,
+        ],
+      }],
     },
     options: {
       plugins: {
         legend: {
-        display: false,
+          display: false,
         }
       }
     }

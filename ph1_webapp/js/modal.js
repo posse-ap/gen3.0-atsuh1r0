@@ -11,14 +11,15 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
   
   post.addEventListener('click', () => {
     let modal = `<div class="modal-back-color" id="modalRemove">`
-    + `<div class="modal">`
+    + `<div class="modal" id="modal">`
     + `<div class="modal-close" id="modalClose"><div></div><p>×</p></div>`
-    + `<div class="modal-input-content">`;
+    + `<div class="modal-input-content-and-button" id="modalInputContentAndButton">`
+    + `<div class="modal-input-content" id="modalInputContent">`;
 
     modal += `<div class="modal-left">`
     + `<div class="modal-date">`
     + `<p class="modal-lists">学習日</p>`
-    + `<div class="modal-date-input" id="learnDate">${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日</div>`
+    + `<input type="date" class="modal-date-input" id="learnDate" value="${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, "0")}-${now.getDate()}"></input>`
     + `</div>`
     + `<div class="modal-contents">`
     + `<p class="modal-lists">学習コンテンツ（複数選択可）</p>`
@@ -55,8 +56,8 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     + `</div>`
 
     modal += `</div>`
-    + `<button class="modal-post">記録・投稿</button>`
-    + `</div></div>`;
+    + `<button class="modal-post" id="record">記録・投稿</button>`
+    + `</div></div></div>`;
 
     const body = document.getElementById('body');
     body.insertAdjacentHTML('beforeBegin', modal);
@@ -66,14 +67,6 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     modalClose.addEventListener('click', () => {
       const modalRemove = document.getElementById('modalRemove');
       modalRemove.remove();
-    })
-
-    // 学習日カレンダーモーダル
-    const learnDate = document.getElementById('learnDate');
-    learnDate.addEventListener('click', () => {
-      alert()
-      // console.log(learnDate.innerHTML)
-      // console.log(learnDate)
     })
 
     // 選択した際の挙動
@@ -93,5 +86,24 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
       })
     })
 
+    const record = document.getElementById('record');
+    record.addEventListener('click', () => {
+      const modalInputContent = document.getElementById('modalInputContent');
+      const modalInputContentAndButton = document.getElementById('modalInputContentAndButton');
+      const modalRoadHeight = modalInputContentAndButton.getBoundingClientRect().height;
+      record.style.display = "none";
+      modalInputContentAndButton.style.height = modalRoadHeight + 'px';
+      modalInputContent.innerHTML = `<div class="modal-loading"></div>`;
+
+      // 5秒ロード後に画面遷移
+      function finishLoad() {
+        modalInputContent.innerHTML = `<div class="modal-loading-finish">`
+        + `<div class="modal-loading-finish-title">AWESOME!</div>`
+        + `<div class="modal-loading-finish-check"></div>`
+        + `<p>記録・投稿<br>完了しました</p>`
+        + `</div>`;
+      }
+      setTimeout(finishLoad, 5000);
+    });
   })
 }
