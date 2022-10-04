@@ -61,8 +61,27 @@
     },
     options: {
       scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            stepSize: 2,
+            callback: function(value){
+              if(value % 2 != 0  && value != 0){
+                return value + 1;
+              };
+            }
+          },
+        },
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          ticks: {
+            stepSize: 2,
+            callback: function(value){
+              return value+'h';
+            }
+          },
         }
       },
       plugins: {
@@ -112,7 +131,7 @@
     options: {
       plugins: {
         legend: {
-        display: false,
+          display: false,
         }
       }
     }
