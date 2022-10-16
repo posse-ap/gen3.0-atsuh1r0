@@ -10,6 +10,10 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
   const post = document.getElementById('post');
   
   post.addEventListener('click', () => {
+    // 投稿ボタンを非表示
+    if (window.innerWidth <= 768) {
+      post.style.display = 'none';
+    }
     let twitterFlg = false;
     let modal = `<div class="modal-back-color" id="modalRemove">`
     + `<div class="modal" id="modal">`
@@ -68,6 +72,11 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     modalClose.addEventListener('click', () => {
       const modalRemove = document.getElementById('modalRemove');
       modalRemove.remove();
+
+      // 投稿ボタンを再表示
+    if (window.innerWidth <= 768) {
+      post.style.display = 'block';
+    }
     })
 
     // 選択した際の挙動
