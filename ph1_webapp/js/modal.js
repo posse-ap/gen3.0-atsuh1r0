@@ -10,6 +10,7 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
   const post = document.getElementById('post');
   
   post.addEventListener('click', () => {
+    let twitterFlg = false;
     let modal = `<div class="modal-back-color" id="modalRemove">`
     + `<div class="modal" id="modal">`
     + `<div class="modal-close" id="modalClose"><div></div><p>×</p></div>`
@@ -50,7 +51,7 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     + `</div>`
     + `<div class="modal-twitter">`
     + `<p  class="modal-lists">Twitter用コメント</p>`
-    + `<textarea class="modal-twitter-text"></textarea>`
+    + `<textarea id="twitterText" class="modal-twitter-text"></textarea>`
     + `<div class="modal-twitter-button"><span id="modalTwitterIcon" class="fa-solid fa-check modal-twitter-icon"></span>Twitterにシェアする</div>`
     + `</div>`
     + `</div>`
@@ -99,10 +100,22 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     const modalTwitterIconClass = document.getElementsByClassName('modal-twitter-icon');
     modalTwitterIcon.addEventListener('click', () => {
       modalTwitterIconClass[0].classList.toggle('modal-twitter-icon-clicked');
+      if (twitterFlg === true) {
+        twitterFlg = false;
+      } else {
+        twitterFlg = true;
+      }
     })
 
     const record = document.getElementById('record');
     record.addEventListener('click', () => {
+      // Twitterにチェックがついているとき、ページ移動
+      let text = document.getElementById('twitterText').value;
+      if (twitterFlg) {
+        const twitter = "https://twitter.com/intent/tweet?text="+text;
+        window.open(twitter,'_blank');
+      }
+
       const modalInputContent = document.getElementById('modalInputContent');
       const modalInputContentAndButton = document.getElementById('modalInputContentAndButton');
       const modalRoadHeight = modalInputContentAndButton.getBoundingClientRect().height;
