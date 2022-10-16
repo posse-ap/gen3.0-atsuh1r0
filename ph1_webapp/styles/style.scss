@@ -215,15 +215,28 @@
     }
 
     &-list {
-      background-color: lightgrey;
+      background-color: #eeebeb;
       border-radius: 1rem;
       display: flex;
       gap: 0.1rem;
       padding: 0 0.5rem;
+      align-items: center;
       cursor: pointer;
 
+      
+      &-icon {
+        color: #FFFFFF;
+        background-color: lightgray;
+        font-size: 1.2rem;
+        border-radius: 50%;
+
+        &-clicked {
+          background-color: #0f71bc;
+        }
+      }
+
       &-clicked {
-        background-color: #0f71bc;
+        background-color: #c4e9f5;
       }
     }
   }
@@ -249,6 +262,23 @@
       width: -webkit-fill-available;
       border-radius: 0.5rem;
       height: 20vh;
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+    }
+
+    &-icon {
+      color: #FFFFFF;
+      background-color: lightgray;
+      font-size: 1.7rem;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &-clicked {
+        background-color: #0f71bc;
+      }
     }
   }
 

@@ -26,7 +26,7 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     + `<ul class="modal-contents-lists">`;
 
     contents.forEach(element => {
-      modal += `<li class="modal-contents-list"><span>✔</span>${element}</li>`
+      modal += `<li class="modal-contents-list"><span class="fa-solid fa-check modal-contents-list-icon"></span>${element}</li>`
     });
 
     modal += `</ul>`
@@ -36,7 +36,7 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     + `<ul class="modal-languages-lists">`;
 
     languages.forEach(element => {
-      modal += `<li class="modal-languages-list"><span>✔</span>${element}</li>`
+      modal += `<li class="modal-languages-list"><span class="fa-solid fa-check modal-languages-list-icon"></span>${element}</li>`
     });
 
     modal += `</ul>`
@@ -51,7 +51,7 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     + `<div class="modal-twitter">`
     + `<p  class="modal-lists">Twitter用コメント</p>`
     + `<textarea class="modal-twitter-text"></textarea>`
-    + `<div><span>✔</span>Twitterにシェアする</div>`
+    + `<div class="modal-twitter-button"><span id="modalTwitterIcon" class="fa-solid fa-check modal-twitter-icon"></span>Twitterにシェアする</div>`
     + `</div>`
     + `</div>`
 
@@ -74,16 +74,31 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     const modalContentsLists = Array.from(modalContentsList);
     const modalLanguagesList = document.getElementsByClassName('modal-languages-list');
     const modalLanguagesLists = Array.from(modalLanguagesList);
+    const modalContentsListIcon = document.getElementsByClassName('modal-contents-list-icon');
+    const modalContentsListsIcon = Array.from(modalContentsListIcon);
+    const modalLanguagesListIcon = document.getElementsByClassName('modal-languages-list-icon');
+    const modalLanguagesListsIcon = Array.from(modalLanguagesListIcon);
 
-    modalContentsLists.forEach(element => {
+    modalContentsLists.forEach((element, index) => {
       element.addEventListener('click', () => {
+        console.log(element,index)
+        console.log(modalLanguagesListsIcon[index])
         element.classList.toggle('modal-contents-list-clicked');
+        modalContentsListsIcon[index].classList.toggle('modal-contents-list-icon-clicked');
       })
     })
-    modalLanguagesLists.forEach(element => {
+    modalLanguagesLists.forEach((element, index) => {
       element.addEventListener('click', () => {
-        element.classList.toggle('modal-contents-list-clicked');
+        element.classList.toggle('modal-languages-list-clicked');
+        modalLanguagesListsIcon[index].classList.toggle('modal-languages-list-icon-clicked');
       })
+    })
+
+    // Twitterをクリック
+    const modalTwitterIcon = document.getElementById('modalTwitterIcon');
+    const modalTwitterIconClass = document.getElementsByClassName('modal-twitter-icon');
+    modalTwitterIcon.addEventListener('click', () => {
+      modalTwitterIconClass[0].classList.toggle('modal-twitter-icon-clicked');
     })
 
     const record = document.getElementById('record');
