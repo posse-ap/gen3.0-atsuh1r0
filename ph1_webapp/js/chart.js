@@ -2,6 +2,46 @@
 
 // 学習時間
 {
+  const studyHours = [
+      {"day": 1, "time": 3},
+      {"day": 2, "time": 4},
+      {"day": 3, "time": 5},
+      {"day": 4, "time": 3},
+      {"day": 5, "time": 0},
+      {"day": 6, "time": 0},
+      {"day": 7, "time": 4},
+      {"day": 8, "time": 2},
+      {"day": 9, "time": 2},
+      {"day": 10, "time": 8},
+      {"day": 11, "time": 8},
+      {"day": 12, "time": 2},
+      {"day": 13, "time": 2},
+      {"day": 14, "time": 1},
+      {"day": 15, "time": 7},
+      {"day": 16, "time": 4},
+      {"day": 17, "time": 4},
+      {"day": 18, "time": 3},
+      {"day": 19, "time": 3},
+      {"day": 20, "time": 3},
+      {"day": 21, "time": 2},
+      {"day": 22, "time": 2},
+      {"day": 23, "time": 6},
+      {"day": 24, "time": 2},
+      {"day": 25, "time": 2},
+      {"day": 26, "time": 1},
+      {"day": 27, "time": 1},
+      {"day": 28, "time": 1},
+      {"day": 29, "time": 7},
+      {"day": 30, "time": 8}
+  ];
+
+  studyHoursDay = [];
+  studyHoursTime = [];
+  studyHours.forEach((element) => {
+    studyHoursDay.push(element.day)
+    studyHoursTime.push(element.time);
+  })
+
   const ctx = document.getElementById('studyHoursGraph');
   const context = ctx.getContext('2d');
   const grad = context.createLinearGradient( 0 , 200 , 0 , 0 ) ;
@@ -11,18 +51,37 @@
   const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: [...Array(31)].map((_, i) => i+1),
+        labels: studyHoursDay,
         datasets: [{
             label: '# of Votes',
-            data: [20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20],
+            data: studyHoursTime,
             backgroundColor: grad,
             borderWidth: 1
         }]
     },
     options: {
       scales: {
+        x: {
+          grid: {
+            display: false,
+          },
+          ticks: {
+            stepSize: 2,
+            callback: function(value){
+              if(value % 2 != 0  && value != 0){
+                return value + 1;
+              };
+            }
+          },
+        },
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          ticks: {
+            stepSize: 2,
+            callback: function(value){
+              return value+'h';
+            }
+          },
         }
       },
       plugins: {
@@ -37,14 +96,14 @@
 // 学習言語
 {
   const languages = [
-    {name: 'HTML', hour: 5, color: '#0000CD'},
-    {name: 'CSS', hour: 7, color: '#4169E1'},
-    {name: 'JavaScript', hour: 15, color: '#4682B4'},
-    {name: 'PHP', hour: 8, color: '#20B2AA'},
+    {name: 'HTML', hour: 30, color: '#0000CD'},
+    {name: 'CSS', hour: 20, color: '#4169E1'},
+    {name: 'JavaScript', hour: 10, color: '#4682B4'},
+    {name: 'PHP', hour: 5, color: '#20B2AA'},
     {name: 'Laravel', hour: 5, color: '#9370DB'},
-    {name: 'SQL', hour: 4, color: '#8A2BE2'},
-    {name: 'SHELL', hour: 3, color: '#00008B'},
-    {name: '情報システム基礎知識（その他）', hour: 3, color: '#4B0082'},
+    {name: 'SQL', hour: 20, color: '#8A2BE2'},
+    {name: 'SHELL', hour: 20, color: '#00008B'},
+    {name: '情報システム基礎知識（その他）', hour: 10, color: '#4B0082'},
   ];
 
   const ctx = document.getElementById('languagesPieChart');
@@ -72,7 +131,7 @@
     options: {
       plugins: {
         legend: {
-        display: false,
+          display: false,
         }
       }
     }
@@ -95,9 +154,9 @@
 // 学習コンテンツ
 {
   const contents = [
-    {name: 'N予備校', hour: 11, color: '#0000CD'},
-    {name: 'ドットインストール', hour: 16, color: '#1E90FF'},
-    {name: 'POSSE課題', hour : 23, color: '#00BFFF'},
+    {name: 'N予備校', hour: 40, color: '#0000CD'},
+    {name: 'ドットインストール', hour: 60, color: '#1E90FF'},
+    {name: 'POSSE課題', hour : 40, color: '#00BFFF'},
   ];
 
   const ctx = document.getElementById('contentsPieChart');
@@ -105,20 +164,20 @@
   const myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: [contents[0].name, contents[1].name, contents[2].name],
-        datasets: [{
-            data: [contents[0].hour, contents[1].hour, contents[2].hour],
-            backgroundColor: [
-              contents[0].color,
-              contents[1].color,
-              contents[2].color,
-            ],
-        }]
+      labels: [contents[0].name, contents[1].name, contents[2].name],
+      datasets: [{
+        data: [contents[0].hour, contents[1].hour, contents[2].hour],
+        backgroundColor: [
+          contents[0].color,
+          contents[1].color,
+          contents[2].color,
+        ],
+      }],
     },
     options: {
       plugins: {
         legend: {
-        display: false,
+          display: false,
         }
       }
     }
