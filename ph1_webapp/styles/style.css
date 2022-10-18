@@ -35,13 +35,13 @@
   gap: 20px;
   justify-content: center;
 }
-.main .left {
+.main-left {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 45%;
 }
-.main .right {
+.main-right {
   display: flex;
   justify-content: center;
   width: 45%;
@@ -106,12 +106,12 @@
   gap: 10px;
   font-weight: bold;
 }
-.footer .before,
-.footer .after {
+.footer .one-month-before,
+.footer .one-month-later {
   color: #3ccfff;
 }
-.footer .before:hover,
-.footer .after:hover {
+.footer .one-month-before:hover,
+.footer .one-month-later:hover {
   color: #0f71bc;
   cursor: pointer;
 }
@@ -130,6 +130,8 @@
   padding: 5vw 5vh;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
+  max-height: 70vh;
+  overflow-y: scroll;
 }
 .modal-back-color {
   position: fixed;
@@ -360,8 +362,7 @@
   .main {
     flex-direction: column;
   }
-  .main .left,
-.main .right {
+  .main-left, .main-right {
     width: 90%;
     margin: 0 auto;
   }

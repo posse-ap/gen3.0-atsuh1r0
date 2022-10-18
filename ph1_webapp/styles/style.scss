@@ -38,14 +38,14 @@
   gap: 20px;
   justify-content: center;
 
-  .left {
+  &-left {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 45%;
   }
 
-  .right {
+  &-right {
     display: flex;
     justify-content: center;
     width: 45%;
@@ -119,13 +119,13 @@
   gap: 10px;
   font-weight: bold;
 
-  .before,
-  .after {
+  .one-month-before,
+  .one-month-later {
     color: #3ccfff;
   }
 
-  .before:hover,
-  .after:hover {
+  .one-month-before:hover,
+  .one-month-later:hover {
     color: #0f71bc;
     cursor: pointer; 
   }
@@ -416,8 +416,8 @@
   .main {
     flex-direction: column;
 
-    .left,
-    .right {
+    &-left,
+    &-right {
       width: 90%;
       margin: 0 auto;
     }
