@@ -93,6 +93,9 @@
   });
 }
 
+// Register the plugin to all charts:
+Chart.register(ChartDataLabels);
+
 // 学習言語
 {
   const languages = [
@@ -132,7 +135,17 @@
       plugins: {
         legend: {
           display: false,
-        }
+        },
+        datalabels: {
+          labels: {
+            title: {
+              color: "white",
+            },
+          },
+          formatter: function (value, context) {
+            return value + "%";
+          },
+        },
       }
     }
   });
@@ -178,7 +191,17 @@
       plugins: {
         legend: {
           display: false,
-        }
+        },
+        datalabels: {
+          labels: {
+            title: {
+              color: "white",
+            },
+          },
+          formatter: function (value, context) {
+            return value + "%";
+          },
+        },
       }
     }
   });
