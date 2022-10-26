@@ -84,11 +84,7 @@
           },
         }
       },
-      plugins: {
-        legend: {
-          display: false,
-        }
-      },
+      plugins: false
     }
   });
 }
