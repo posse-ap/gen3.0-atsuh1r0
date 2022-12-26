@@ -5,7 +5,7 @@ USE posse;
 DROP TABLE IF EXISTS studyHours;
 CREATE TABLE studyHours (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  studyHour DECIMAL(5,2),
+  studyHour INT
   languages INT,
   contents INT,
   createTime TIMESTAMP

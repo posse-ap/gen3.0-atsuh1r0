@@ -1,3 +1,11 @@
+<?php
+require_once(__DIR__ . '/db/pdo.php');
+$db = getDb();
+$objDateTime = new DateTime('now');
+$todayStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-d 00:00:00') . "' AND '" . $objDateTime->format('Y-m-d 23:59:59') . "'")->fetchColumn();
+$thisMonthStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-01 00:00:00') . "' AND '" . $objDateTime->format('Y-m-31 23:59:59') . "'")->fetchColumn();
+$totalStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours")->fetchColumn();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,17 +29,17 @@
       <section class="study-hours">
         <div class="today-wrapper">
           <div class="study-hours-title">Today</div>
-          <div class="study-hours-hour" id="studyHoursToday">0</div>
+          <div class="study-hours-hour" id="studyHoursToday"><?= $todayStudyHours ?></div>
           <div class="study-hours-unit">hour</div>
         </div>
         <div class="month-wrapper">
           <div class="study-hours-title">Month</div>
-          <div class="study-hours-hour" id="studyHoursMonth">0</div>
+          <div class="study-hours-hour" id="studyHoursMonth"><?= $thisMonthStudyHours ?></div>
           <div class="study-hours-unit">hour</div>
         </div>
         <div class="total-wrapper">
           <div class="study-hours-title">Total</div>
-        <div class="study-hours-hour" id="studyHoursTotal">0</div>
+        <div class="study-hours-hour" id="studyHoursTotal"><?= $totalStudyHours ?></div>
         <div class="study-hours-unit">hour</div>
         </div>
       </section>
