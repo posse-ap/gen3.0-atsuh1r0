@@ -1,10 +1,21 @@
 <?php
 require_once(__DIR__ . '/db/pdo.php');
 $db = getDb();
+
 $objDateTime = new DateTime('now');
+// 表示させる月の取得
+if (!empty($_GET)) {
+  $month = $_GET['month'];
+} else {
+  $month = 0;
+}
+// 学習時間を取得
 $todayStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-d 00:00:00') . "' AND '" . $objDateTime->format('Y-m-d 23:59:59') . "'")->fetchColumn();
-$thisMonthStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-01 00:00:00') . "' AND '" . $objDateTime->format('Y-m-31 23:59:59') . "'")->fetchColumn();
 $totalStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours")->fetchColumn();
+
+// 表示月の
+$displayMonth = $objDateTime->modify($month . ' months')->format('Y年m月');
+$thisMonthStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-01 00:00:00') . "' AND '" . $objDateTime->format('Y-m-31 23:59:59') . "'")->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -70,11 +81,16 @@ $totalStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHour
     </div>
   </main>
   <footer class="footer">
-    <div class="one-month-before" id="oneMonthBefore"><</div>
-    <div id="displayDate"></div>
-    <div class="one-month-later" id="oneMonthLater">></div>
+    <? if(is_null($month)): ?>
+      <a href="./index.php?month=-1" class="one-month-before"><</a>
+      <div id="displayDate"><?= $displayMonth ?></div>
+      <a href="./index.php?month=1" class="one-month-later">></a>
+    <? else: ?>
+      <a href="./index.php?month=<?= $month - 1?>" class="one-month-before"><</a>
+      <div id="displayDate"><?= $displayMonth ?></div>
+      <a href="./index.php?month=<?= $month + 1?>" class="one-month-later">></a>
+    <? endif; ?>
   </footer>
-  <script src="./assets/script/date.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- chartjs-plugin-datalabels------------------------------ -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.1.0"></script>

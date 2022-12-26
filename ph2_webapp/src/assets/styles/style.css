@@ -113,6 +113,7 @@
 .footer .one-month-before,
 .footer .one-month-later {
   color: #3ccfff;
+  text-decoration: none;
 }
 .footer .one-month-before:hover,
 .footer .one-month-later:hover {
