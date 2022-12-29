@@ -95,7 +95,10 @@ $thisMonthStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM study
     <!-- chartjs-plugin-datalabels------------------------------ -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.1.0"></script>
   <script src="https://kit.fontawesome.com/afb3b2864c.js" crossorigin="anonymous"></script>
-  <script src="./assets/script/chart.js"></script>
   <script src="./assets/script/modal.js"></script>
 </body>
 </html>
+
+<?php
+// chart処理用のファイルの読み込み
+require_once(__DIR__ . '/chart.php');
