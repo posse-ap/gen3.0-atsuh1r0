@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/db/pdo.php');
 $db = getDb();
 
-$objDateTime = new DateTime('now');
+$objDateTime = new DateTimeImmutable('now');
 // 表示させる月の取得
 if (!empty($_GET)) {
   $month = $_GET['month'];
@@ -13,8 +13,8 @@ if (!empty($_GET)) {
 $todayStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-d 00:00:00') . "' AND '" . $objDateTime->format('Y-m-d 23:59:59') . "'")->fetchColumn();
 $totalStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours")->fetchColumn();
 
-// 表示月の
-$displayMonth = $objDateTime->modify($month . ' months')->format('Y年m月');
+// 表示月の学習時間を取得
+$displayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y年m月');
 $thisMonthStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-01 00:00:00') . "' AND '" . $objDateTime->format('Y-m-31 23:59:59') . "'")->fetchColumn();
 ?>
 <!DOCTYPE html>

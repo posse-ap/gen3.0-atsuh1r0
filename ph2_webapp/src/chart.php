@@ -1,40 +1,56 @@
+<?php
+// 表示月の日数を取得
+$lastDay = $objDateTime->modify('first day of this month');
+$firstDay = $objDateTime->modify('first day of next month');
+$diffDays = $lastDay->diff($firstDay)->days;
+
+// 表示月の各日の学習時間を取得、json形式で格納
+$studyHours = [];
+for ($day = 1; $day <= $diffDays; $day++) {
+  $startTime = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-' . $day . ' 00:00:00');
+  $lastTIme = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-' . $day . ' 23:59:59');
+  $studyHour = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $startTime . "' AND '" . $lastTIme . "'")->fetchColumn();
+  $studyHours[] = ['day' => $day, 'time' => (int)$studyHour];
+}
+?>
 <script>
 `use strict`
 
 // 学習時間
 {
-  const studyHours = [
-      {"day": 1, "time": 3},
-      {"day": 2, "time": 4},
-      {"day": 3, "time": 5},
-      {"day": 4, "time": 3},
-      {"day": 5, "time": 0},
-      {"day": 6, "time": 0},
-      {"day": 7, "time": 4},
-      {"day": 8, "time": 2},
-      {"day": 9, "time": 2},
-      {"day": 10, "time": 8},
-      {"day": 11, "time": 8},
-      {"day": 12, "time": 2},
-      {"day": 13, "time": 2},
-      {"day": 14, "time": 1},
-      {"day": 15, "time": 7},
-      {"day": 16, "time": 4},
-      {"day": 17, "time": 4},
-      {"day": 18, "time": 3},
-      {"day": 19, "time": 3},
-      {"day": 20, "time": 3},
-      {"day": 21, "time": 2},
-      {"day": 22, "time": 2},
-      {"day": 23, "time": 6},
-      {"day": 24, "time": 2},
-      {"day": 25, "time": 2},
-      {"day": 26, "time": 1},
-      {"day": 27, "time": 1},
-      {"day": 28, "time": 1},
-      {"day": 29, "time": 7},
-      {"day": 30, "time": 8}
-  ];
+  // const studyHours = [
+  //     {"day": 1, "time": 3},
+  //     {"day": 2, "time": 4},
+  //     {"day": 3, "time": 5},
+  //     {"day": 4, "time": 3},
+  //     {"day": 5, "time": 0},
+  //     {"day": 6, "time": 0},
+  //     {"day": 7, "time": 4},
+  //     {"day": 8, "time": 2},
+  //     {"day": 9, "time": 2},
+  //     {"day": 10, "time": 8},
+  //     {"day": 11, "time": 8},
+  //     {"day": 12, "time": 2},
+  //     {"day": 13, "time": 2},
+  //     {"day": 14, "time": 1},
+  //     {"day": 15, "time": 7},
+  //     {"day": 16, "time": 4},
+  //     {"day": 17, "time": 4},
+  //     {"day": 18, "time": 3},
+  //     {"day": 19, "time": 3},
+  //     {"day": 20, "time": 3},
+  //     {"day": 21, "time": 2},
+  //     {"day": 22, "time": 2},
+  //     {"day": 23, "time": 6},
+  //     {"day": 24, "time": 2},
+  //     {"day": 25, "time": 2},
+  //     {"day": 26, "time": 1},
+  //     {"day": 27, "time": 1},
+  //     {"day": 28, "time": 1},
+  //     {"day": 29, "time": 7},
+  //     {"day": 30, "time": 8}
+  // ];
+  const studyHours = JSON.parse('<?= json_encode($studyHours) ?>');
 
   studyHoursDay = [];
   studyHoursTime = [];
