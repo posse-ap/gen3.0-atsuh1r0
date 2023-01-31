@@ -1,15 +1,14 @@
 <?php
 // 表示月の日数を取得
-$lastDay = $objDateTime->modify('first day of this month');
-$firstDay = $objDateTime->modify('first day of next month');
+$lastDay = $objDateTime->modify('first day of this month')->modify($month . ' months');
+$firstDay = $objDateTime->modify('first day of next month')->modify($month . ' months');
 $diffDays = $lastDay->diff($firstDay)->days;
 
 // 表示月の各日の学習時間を取得、json形式で格納
 $studyHours = [];
 for ($day = 1; $day <= $diffDays; $day++) {
-  $startTime = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-' . $day . ' 00:00:00');
-  $lastTIme = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-' . $day . ' 23:59:59');
-  $studyHour = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $startTime . "' AND '" . $lastTIme . "'")->fetchColumn();
+  $displayDate = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-' . $day);
+  $studyHour = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE learnDate = '" . $displayDate . "'")->fetchColumn();
   $studyHours[] = ['day' => $day, 'time' => (int)$studyHour];
 }
 
@@ -17,12 +16,12 @@ require_once('./define.php');
 // 表示月の学習時間を各項目毎に取得
 $languagesData = [];
 $contentsData = [];
-$startTimeOfDisplayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-d 00:00:00');
-$endTimeOfDisplayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->modify('last day of this month')->format('Y-m-d 23:59:59');
+$startTimeOfDisplayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-d');
+$endTimeOfDisplayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->modify('last day of this month')->format('Y-m-d');
 
 //学習言語毎
 foreach (Define::$languages as $languageNum => $name) {
-  $studyHoursOfLanguage = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $startTimeOfDisplayMonth . "' AND '" . $endTimeOfDisplayMonth . "' AND languages = " . $languageNum)->fetchColumn();
+  $studyHoursOfLanguage = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE learnDate BETWEEN '" . $startTimeOfDisplayMonth . "' AND '" . $endTimeOfDisplayMonth . "' AND languages = " . $languageNum)->fetchColumn();
 
   $languagesData[] = [
     'name'  => $name, 
@@ -33,7 +32,7 @@ foreach (Define::$languages as $languageNum => $name) {
 
 // 学習コンテンツ毎
 foreach (Define::$contents as $contentNum => $name) {
-  $studyHoursOfContent = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $startTimeOfDisplayMonth . "' AND '" . $endTimeOfDisplayMonth . "' AND contents = " . $contentNum)->fetchColumn();
+  $studyHoursOfContent = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE learnDate BETWEEN '" . $startTimeOfDisplayMonth . "' AND '" . $endTimeOfDisplayMonth . "' AND contents = " . $contentNum)->fetchColumn();
 
   $contentsData[] = [
     'name'  => $name, 
@@ -187,7 +186,7 @@ Chart.register(ChartDataLabels);
             },
           },
           formatter: function (value, context) {
-            return value / <?= $thisMonthStudyHours ?> * 100 + "%";
+            return parseInt(value / <?= $thisMonthStudyHours ?> * 1000, 10) / 10 + "%";
           },
         },
       }
@@ -244,7 +243,7 @@ Chart.register(ChartDataLabels);
             },
           },
           formatter: function (value, context) {
-            return value / <?= $thisMonthStudyHours ?> * 100 + "%";
+            return parseInt(value / <?= $thisMonthStudyHours ?> * 1000, 10) / 10 + "%";
           },
         },
       }

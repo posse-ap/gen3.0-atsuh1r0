@@ -10,7 +10,7 @@ class Define {
     5 => 'Laravel',
     6 => 'SQL',
     7 => 'SHELL',
-    8 => '情報システム基礎（その他）',
+    8 => '情報システム基礎知識（その他）',
   ];
 
   public static $language_colors = [
