@@ -51,7 +51,7 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     modal += `<div class="modal-right">`
     + `<div class="modal-hour">`
     + `<p  class="modal-lists">学習時間</p>`
-    + `<input type="text" class="modal-hour-text"></input>`
+    + `<input type="text" class="modal-hour-text" id="studyHours"></input>`
     + `</div>`
     + `<div class="modal-twitter">`
     + `<p  class="modal-lists">Twitter用コメント</p>`
@@ -91,8 +91,6 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
 
     modalContentsLists.forEach((element, index) => {
       element.addEventListener('click', () => {
-        console.log(element,index)
-        console.log(modalLanguagesListsIcon[index])
         element.classList.toggle('modal-contents-list-clicked');
         modalContentsListsIcon[index].classList.toggle('modal-contents-list-icon-clicked');
       })
@@ -125,6 +123,14 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
         window.open(twitter,'_blank');
       }
 
+      // データ取得
+      const submitData = {
+        date       : document.getElementById('learnDate').value,
+        contents   : Array.from(document.getElementsByClassName('modal-contents-list-clicked'))[0].textContent,
+        languages  : Array.from(document.getElementsByClassName('modal-languages-list-clicked'))[0].textContent,
+        studyHours : document.getElementById('studyHours').value,
+      };
+
       const modalInputContent = document.getElementById('modalInputContent');
       const modalInputContentAndButton = document.getElementById('modalInputContentAndButton');
       const modalRoadHeight = modalInputContentAndButton.getBoundingClientRect().height;
@@ -140,7 +146,23 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
         + `<p>記録・投稿<br>完了しました</p>`
         + `</div>`;
       }
-      setTimeout(finishLoad, 5000);
+
+      // データの登録
+      fetch('./../service/regist.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(submitData),
+      })
+      .then(response => response.json())
+      .then(res => {
+        setTimeout(finishLoad, 5000);
+      })
+      .catch(error => {
+        // エラー表示
+        window.location.href = './../error.php';
+      })
     });
   })
 }
