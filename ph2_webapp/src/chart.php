@@ -12,6 +12,36 @@ for ($day = 1; $day <= $diffDays; $day++) {
   $studyHour = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $startTime . "' AND '" . $lastTIme . "'")->fetchColumn();
   $studyHours[] = ['day' => $day, 'time' => (int)$studyHour];
 }
+
+require_once('./define.php');
+// 表示月の学習時間を各項目毎に取得
+$languagesData = [];
+$contentsData = [];
+$startTimeOfDisplayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-d 00:00:00');
+$endTimeOfDisplayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->modify('last day of this month')->format('Y-m-d 23:59:59');
+
+//学習言語毎
+foreach (Define::$languages as $languageNum => $name) {
+  $studyHoursOfLanguage = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $startTimeOfDisplayMonth . "' AND '" . $endTimeOfDisplayMonth . "' AND languages = " . $languageNum)->fetchColumn();
+
+  $languagesData[] = [
+    'name'  => $name, 
+    'hour'  => (int)$studyHoursOfLanguage, 
+    'color' => Define::$language_colors[$languageNum],
+  ];
+}
+
+// 学習コンテンツ毎
+foreach (Define::$contents as $contentNum => $name) {
+  $studyHoursOfContent = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $startTimeOfDisplayMonth . "' AND '" . $endTimeOfDisplayMonth . "' AND contents = " . $contentNum)->fetchColumn();
+
+  $contentsData[] = [
+    'name'  => $name, 
+    'hour'  => (int)$studyHoursOfContent, 
+    'color' => Define::$content_colors[$contentNum],
+  ];
+}
+
 ?>
 <script>
 `use strict`
@@ -111,16 +141,17 @@ Chart.register(ChartDataLabels);
 
 // 学習言語
 {
-  const languages = [
-    {name: 'HTML', hour: 30, color: '#0000CD'},
-    {name: 'CSS', hour: 20, color: '#4169E1'},
-    {name: 'JavaScript', hour: 10, color: '#4682B4'},
-    {name: 'PHP', hour: 5, color: '#20B2AA'},
-    {name: 'Laravel', hour: 5, color: '#9370DB'},
-    {name: 'SQL', hour: 20, color: '#8A2BE2'},
-    {name: 'SHELL', hour: 20, color: '#00008B'},
-    {name: '情報システム基礎知識（その他）', hour: 10, color: '#4B0082'},
-  ];
+  // const languages = [
+  //   {name: 'HTML', hour: 30, color: '#0000CD'},
+  //   {name: 'CSS', hour: 20, color: '#4169E1'},
+  //   {name: 'JavaScript', hour: 10, color: '#4682B4'},
+  //   {name: 'PHP', hour: 5, color: '#20B2AA'},
+  //   {name: 'Laravel', hour: 5, color: '#9370DB'},
+  //   {name: 'SQL', hour: 20, color: '#8A2BE2'},
+  //   {name: 'SHELL', hour: 20, color: '#00008B'},
+  //   {name: '情報システム基礎知識（その他）', hour: 10, color: '#4B0082'},
+  // ];
+  const languages = JSON.parse('<?= json_encode($languagesData) ?>');
 
   const ctx = document.getElementById('languagesPieChart');
   const myChart = new Chart(ctx, {
@@ -156,7 +187,7 @@ Chart.register(ChartDataLabels);
             },
           },
           formatter: function (value, context) {
-            return value + "%";
+            return value / <?= $thisMonthStudyHours ?> * 100 + "%";
           },
         },
       }
@@ -179,11 +210,12 @@ Chart.register(ChartDataLabels);
 
 // 学習コンテンツ
 {
-  const contents = [
-    {name: 'N予備校', hour: 40, color: '#0000CD'},
-    {name: 'ドットインストール', hour: 60, color: '#1E90FF'},
-    {name: 'POSSE課題', hour : 40, color: '#00BFFF'},
-  ];
+  // const contents = [
+  //   {name: 'N予備校', hour: 40, color: '#0000CD'},
+  //   {name: 'ドットインストール', hour: 60, color: '#1E90FF'},
+  //   {name: 'POSSE課題', hour : 40, color: '#00BFFF'},
+  // ];
+  const contents = JSON.parse('<?= json_encode($contentsData) ?>');
 
   const ctx = document.getElementById('contentsPieChart');
   
@@ -212,7 +244,7 @@ Chart.register(ChartDataLabels);
             },
           },
           formatter: function (value, context) {
-            return value + "%";
+            return value / <?= $thisMonthStudyHours ?> * 100 + "%";
           },
         },
       }

@@ -15,7 +15,7 @@ $totalStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHour
 
 // 表示月の学習時間を取得
 $displayMonth = $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y年m月');
-$thisMonthStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->format('Y-m-01 00:00:00') . "' AND '" . $objDateTime->format('Y-m-31 23:59:59') . "'")->fetchColumn();
+$thisMonthStudyHours = $db->query("SELECT COALESCE(sum(studyHour), 0) FROM studyHours WHERE createTime BETWEEN '" . $objDateTime->modify('first day of this month')->modify($month . ' months')->format('Y-m-01 00:00:00') . "' AND '" . $objDateTime->modify('first day of this month')->modify($month . ' months')->modify('last day of this month')->format('Y-m-d 23:59:59') . "'")->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
