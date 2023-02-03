@@ -70,6 +70,7 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
     // モーダルを閉じる
     const modalClose = document.getElementById('modalClose');
     modalClose.addEventListener('click', () => {
+      location.reload();
       const modalRemove = document.getElementById('modalRemove');
       modalRemove.remove();
 
@@ -124,11 +125,19 @@ const languages = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'SQL', 'SHELL'
       }
 
       // データ取得
+      const contentsCount = Array.from(document.getElementsByClassName('modal-contents-list-clicked')).length;
+      for (let contentsNum = 0; contentsNum < contentsCount; contentsNum++) {
+        contents[contentsNum] = Array.from(document.getElementsByClassName('modal-contents-list-clicked'))[contentsNum].textContent
+      }
+      const languagesCount = Array.from(document.getElementsByClassName('modal-languages-list-clicked')).length;
+
       const submitData = {
-        date       : document.getElementById('learnDate').value,
-        contents   : Array.from(document.getElementsByClassName('modal-contents-list-clicked'))[0].textContent,
-        languages  : Array.from(document.getElementsByClassName('modal-languages-list-clicked'))[0].textContent,
-        studyHours : document.getElementById('studyHours').value,
+        date           : document.getElementById('learnDate').value,
+        contentsCount  : contentsCount,
+        contents       : contents,
+        languagesCount : languagesCount,
+        languages      : Array.from(document.getElementsByClassName('modal-languages-list-clicked'))[0].textContent,
+        studyHours     : parseInt(document.getElementById('studyHours').value / contentsCount * 10) / 10,
       };
 
       const modalInputContent = document.getElementById('modalInputContent');
